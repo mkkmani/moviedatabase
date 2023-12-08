@@ -1,0 +1,62 @@
+.nav-ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background-color: #2596db;
+  margin-top: 0;
+  padding-left: 15px;
+}
+
+.nav-link-item {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.logo-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.logo {
+  height: 34px;
+  width: 34px;
+}
+
+.route-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.route-icon p {
+  display: none;
+}
+
+.links-search {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-div {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* .search-bar {
+  height: 30px;
+} */
+
+@media screen and (min-width:567px) {
+  .route-icon p {
+    display: inline;
+  }
+}

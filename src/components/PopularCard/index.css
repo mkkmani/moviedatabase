@@ -1,0 +1,46 @@
+.movie-card {
+  max-width: 180px;
+  position: relative;
+  color: black;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.link-item {
+  text-decoration: none;
+}
+
+.poster-img {
+  height: 250px;
+  width: 160px;
+  border-radius: 10px;
+}
+
+.rating-div {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightblue;
+  background-color: #66d487;
+  color: white;
+  margin-bottom: 30px;
+  margin-top: -20px;
+  margin-left: 10px;
+  position: absolute;
+  z-index: 1;
+}
+
+.rating-text {
+  font-size: 10px;
+}
+
+.popular-title {
+  font-weight: bold;
+}
+
+.popular-date {
+  font-size: 14px;
+}

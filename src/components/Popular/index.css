@@ -1,0 +1,14 @@
+.success-ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.loader-div {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
