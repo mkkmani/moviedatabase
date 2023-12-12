@@ -12,3 +12,20 @@
   justify-content: center;
   align-items: center;
 }
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-btn {
+  background: none;
+  border: none;
+  outline: none;
+  margin-top: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+  cursor: pointer;
+}

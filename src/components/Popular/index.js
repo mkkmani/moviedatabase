@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import { Rings } from 'react-loader-spinner'
+import { AiOutlineLeft,AiOutlineRight } from "react-icons/ai";
 import PopularCard from '../PopularCard'
 import './index.css'
 
@@ -18,6 +19,39 @@ class PopularRoute extends Component {
 
   componentDidMount() {
     this.getPopularData()
+  }
+
+  renderPagination = () => {
+    const { currentPage,popularData } = this.state
+    
+    const onClickLeft = () => {
+      if (currentPage > 1) {
+        this.setState(prev =>({currentPage:prev.currentPage-1}),this.getPopularData)
+      }
+    }
+
+    const onClickRight = () => {
+      this.setState(prev =>({currentPage:prev.currentPage+1}),this.getPopularData)
+    }
+
+    const leftDisabled = currentPage === 1
+    const rightDisabled = popularData.length < 20
+    
+    return (
+    <div className="pagination">
+        <button type='button' onClick={onClickLeft} disabled={leftDisabled}
+          aria-label='left'
+        className='pagination-btn'>
+        <AiOutlineLeft/>
+      </button>
+      <span>{currentPage}</span>
+        <button type='button' onClick={onClickRight} disabled={rightDisabled}
+          aria-label='right'
+        className='pagination-btn'>
+       <AiOutlineRight/>
+      </button>
+    </div>
+  );
   }
 
   getPopularData = async () => {
@@ -62,13 +96,16 @@ class PopularRoute extends Component {
     const {popularData} = this.state
 
     return (
-      <ul className="success-ul">
+      <div>
+        <ul className="success-ul">
         {popularData.map(each => (
           <li key={each.id}>
             <PopularCard details={each} />
           </li>
         ))}
-      </ul>
+        </ul>
+        <div>{this.renderPagination()}</div>
+      </div>
     )
   }
 

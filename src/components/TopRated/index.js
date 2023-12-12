@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Rings } from "react-loader-spinner";
+import {AiOutlineRight,AiOutlineLeft} from 'react-icons/ai'
 import PopularCard from "../PopularCard";
-import './index.css'
 
 const apiStatusList = {
   loading: 'LOADING',
@@ -58,17 +58,55 @@ class TopratedRoute extends Component{
     }
   }
 
+  renderPagination = () => {
+    const { currentPage,topratedData } = this.state
+    
+    const onClickLeft = () => {
+      if (currentPage > 1) {
+        this.setState(prev =>({currentPage:prev.currentPage-1}),this.getTopratedData)
+      }
+    }
+
+    const onClickRight = () => {
+      this.setState(prev =>({currentPage:prev.currentPage+1}),this.getTopratedData)
+    }
+
+    const leftDisabled = currentPage === 1
+    const rightDisabled = topratedData.length < 20
+    
+    return (
+    <div className="pagination">
+        <button type='button' onClick={onClickLeft} disabled={leftDisabled}
+          aria-label='left'
+        className='pagination-btn'>
+        <AiOutlineLeft/>
+      </button>
+      <span>{currentPage}</span>
+        <button type='button' onClick={onClickRight} disabled={rightDisabled}
+          aria-label='right'
+        className='pagination-btn'>
+       <AiOutlineRight/>
+      </button>
+    </div>
+  );
+  }
+
    successView = () => {
     const {topratedData} = this.state
 
-    return (
+     return (
+       <div>
       <ul className="success-ul">
         {topratedData.map(each => (
           <li key={each.id}>
             <PopularCard details={each} />
           </li>
         ))}
-      </ul>
+         </ul>
+         <div>
+           {this.renderPagination()}
+         </div>
+         </div>
     )
   }
 

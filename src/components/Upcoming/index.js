@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import { Rings } from 'react-loader-spinner'
+import {AiOutlineRight,AiOutlineLeft} from 'react-icons/ai'
 import PopularCard from '../PopularCard'
 
 
@@ -58,17 +59,55 @@ class UpcomingRoute extends Component {
     }
   }
 
+  renderPagination = () => {
+    const { currentPage,upcomingData } = this.state
+    
+    const onClickLeft = () => {
+      if (currentPage > 1) {
+        this.setState(prev =>({currentPage:prev.currentPage-1}),this.getUpcoming)
+      }
+    }
+
+    const onClickRight = () => {
+      this.setState(prev =>({currentPage:prev.currentPage+1}),this.getUpcoming)
+    }
+
+    const leftDisabled = currentPage === 1
+    const rightDisabled = upcomingData.length < 20
+    
+    return (
+    <div className="pagination">
+        <button type='button' onClick={onClickLeft} disabled={leftDisabled}
+          aria-label='left'
+        className='pagination-btn'>
+        <AiOutlineLeft/>
+      </button>
+      <span>{currentPage}</span>
+        <button type='button' onClick={onClickRight} disabled={rightDisabled}
+          aria-label='right'
+        className='pagination-btn'>
+       <AiOutlineRight/>
+      </button>
+    </div>
+  );
+  }
+
   successView = () => {
     const {upcomingData} = this.state
 
     return (
+      <div>
       <ul className="success-ul">
         {upcomingData.map(each => (
           <li key={each.id}>
             <PopularCard details={each} />
           </li>
         ))}
-      </ul>
+        </ul>
+        <div>
+          {this.renderPagination()}
+        </div>
+        </div>
     )
   }
 
